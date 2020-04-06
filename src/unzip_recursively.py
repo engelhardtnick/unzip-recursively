@@ -18,6 +18,8 @@ if __name__ == "__main__":
         dir = pathlib.Path(args.dir)
     except TypeError as e:
         raise UserWarning(f"Was expecting a directory but got: {args.dir}")
+    if not dir.is_dir():
+        raise UserWarning(f"Was expecting a directory but got: {args.dir}")
 
     zipfiles = [f for f in dir.glob("**/*") if f.is_file() and f.name.endswith(".zip")]
 
